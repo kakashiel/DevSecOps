@@ -1,0 +1,4 @@
+- hosts: localhost
+  tasks:
+  - name: Vagrant up
+    shell: cd /{{ PROJECT }}/vagrant && vagrant up

@@ -1,0 +1,14 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400 # Only run "update_cache=yes" if the last one is more than one day
+
+- name: Install package
+  become: yes
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - nmon #Usefule tool to monitor network/proc/memory/filesytem
+      - wget

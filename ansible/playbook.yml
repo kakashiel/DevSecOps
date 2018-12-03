@@ -1,0 +1,4 @@
+- name: Include localhost
+  import_playbook: localhost.yml
+- name: Include clusterServers
+  import_playbook: clusterServers.yml

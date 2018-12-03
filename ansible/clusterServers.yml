@@ -1,0 +1,9 @@
+- hosts: clusterservers
+  remote_user: vagrant
+  vars:
+    ansible_port: 2222
+    ansible_ssh_pass: vagrant
+    ansible_connection: ssh
+  tasks:
+  - include: "/{{SRC}}/common/tasks/common_tools.yml"
+  - include: "/{{SRC}}/common/tasks/zsh.yml"
