@@ -7,3 +7,4 @@
   tasks:
   - include: "/{{SRC}}/common/tasks/common_tools.yml"
   - include: "/{{SRC}}/common/tasks/zsh.yml"
+  - include: "/{{SRC}}/common/tasks/k8s.yml"

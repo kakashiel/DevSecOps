@@ -1,12 +1,13 @@
 ---
 - name: Installing snap
   become: true
+  register: installation
   apt:
     pkg: snap
     state: latest
-  register: installation
 
 - name: Installing microk8s with snap
-  snap:
-    name: microk8s
-    classic: yes
+  become: true
+  command: snap install microk8s --classic
+
+
