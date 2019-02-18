@@ -1,9 +1,9 @@
-##INSTALL VM MINIKUBE
+Documentation accès: https://kakashiel.github.io/DevSecOps/
+##INSTALL VM
 
 **Version OS:** Ubuntu 16.04 LTS \
 **Version Kubernetes:** 1.10.0 \
 **Version Docker:** 18.06-ce \
-**Version Minikube:** 0.28.2 \
 **Version JHipster Container:** 5.2.1 
 **Provider:** Virtualbox \
 **Tool:** [Vagrant](https://www.vagrantup.com/downloads.html)

@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.33.10"
 
   #Create host-only adapater for devstack
-  config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
+  #config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
 
 
   # Create a public network, which generally matched to bridged network.
