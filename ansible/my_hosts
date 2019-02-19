@@ -2,4 +2,10 @@
 localhost   ansible_connection=local
 
 [clusterservers]
-127.0.0.1  ansible_python_interpreter=/usr/bin/python3
+127.0.0.1
+
+[clusterservers:vars]
+ansible_connection=ssh
+ansible_user=vagrant
+ansible_password=vagrant
+ansible_python_interpreter=/usr/bin/python3

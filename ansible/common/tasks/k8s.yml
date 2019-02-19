@@ -9,5 +9,3 @@
 - name: Installing microk8s with snap
   become: true
   command: snap install microk8s --classic
-
-

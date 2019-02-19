@@ -1,3 +1,4 @@
 ---
 PROJECT: $HOME/personal/DevSecOps
 SRC: "{{ PROJECT }}/ansible"
+username: vagrant
