@@ -1,37 +1,38 @@
-## Welcome to GitHub Pages
+## Welcome to Adrien laboratory
 
-You can use the [editor on GitHub](https://github.com/kakashiel/adrien_website/edit/master/docs/README.md) to maintain and preview the content for your website in Markdown files.
+Access to the web page [here:](https://kakashiel.github.io/DevSecOps/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Installation lab
 
-### Markdown
+Before begin you need to install:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**Version OS:** Ubuntu 18.10 LTS \
+**Provider:** [Virtualbox](https://www.virtualbox.org/wiki/Downloads) \
+**Tools:** [Vagrant](https://www.vagrantup.com/downloads.html) / Ansible
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+$ brew install vagrant
+$ brew install ansible
+$ sudo sh -c "echo 192.168.33.10   k8s >> /etc/hosts"
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Launch lab
+```
+$ cd vagrant && vagrant up
+$ cd ../ansible && ansible-playbook palybook.yml
+```
+### Access tools
 
-### Jekyll Themes
+Access to the [kubernetes dashboard](http://192.168.33.10:8080/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kakashiel/adrien_website/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Access to the [Grafana](/api/v1/namespaces/kube-system/services/monitoring-grafana/proxy)
 
-### Support or Contact
+### Useful tools:
+For more info try 
+```
+// General system info
+$ nmon
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+// K8s cluster info
+$ k cluster-info
+```

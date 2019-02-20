@@ -9,3 +9,8 @@
 - name: Installing microk8s with snap
   become: true
   command: snap install microk8s --classic
+  register: installation
+
+- name: Enables microk8s dns dashboard ingress
+  command: microk8s.enable dns dashboard ingress
+  when: installation is sucess

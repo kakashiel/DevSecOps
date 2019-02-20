@@ -2,12 +2,13 @@
 - name: Installing Zsh and git
   apt: pkg=zsh,git state=latest
   register: installation
+  become: yes
 
 - name: Backing up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv  ~/.zshrc ~/.zshrc.orig; fi
   when: installation is success
 
-- name: Cloning  oh-my-zsh
+- name: Cloning oh-my-zsh
   git:
     repo=https://github.com/robbyrussell/oh-my-zsh
     dest=~/.oh-my-zsh
@@ -20,3 +21,8 @@
     dest=~/.zshrc
   when: cloning is success
 
+- name: change user shell to zsh
+  become: yes
+  become_user: root
+  command: chsh -s /bin/zsh "{{ username }}"
+  when: cloning is success
