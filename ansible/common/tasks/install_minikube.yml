@@ -30,4 +30,10 @@
   shell: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
   args:
     executable: /bin/zsh
+  register: installation_minikube
   when: installation is success
+
+- name: Start minikube
+  become: true
+  shell: minikube start --vm-driver=none --memory=8192
+  when: installation_minikube is success
