@@ -1,0 +1,33 @@
+---
+- name: Add Docker GPG key
+  become: yes
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+- name: Add Docker APT repository
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+
+- name: Install list of packages
+  become: yes
+  apt:
+    name: ['apt-transport-https','ca-certificates','curl','software-properties-common','docker-ce', 'docker-ce-cli', 'containerd.io', 'snap']
+    state: present
+    update_cache: yes
+
+- name: Installing kubectl
+  become: true
+  command: snap install kubectl --classic
+  register: installation
+
+- name: Start docker
+  become: true
+  command: service docker start && systemctl enable docker
+  register: installation
+
+- name: Install minikube
+  become: true
+  shell: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
+  args:
+    executable: /bin/zsh
+  when: installation is success

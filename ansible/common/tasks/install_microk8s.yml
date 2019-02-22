@@ -12,5 +12,7 @@
   register: installation
 
 - name: Enables microk8s dns dashboard ingress
-  command: microk8s.enable dns dashboard ingress
-  when: installation is sucess
+  shell: source ~/.zshrc && microk8s.enable dns dashboard ingress
+  args:
+    executable: /bin/zsh
+  when: installation is success

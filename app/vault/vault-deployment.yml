@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        app: vault
+        version: "1.0"
+    spec:
+      containers:
+        - name: gateway-app
+          image: "vault:latest"
+          imagePullPolicy: IfNotPresent
+          command: ["vault", "server", "-config", "/app/vault/config.hcl"]
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
+          ports:
+            - name: http
+              containerPort: 8200
+          resources:
+            requests:
+              memory: "250Mi"
+              cpu: "250m"
+            limits:
+              memory: "250Mi"
+              cpu: "250m"
+          volumeMounts:
+            - name: configurations
+              mountPath: /vault/config/config.json
+      volumes:
+        - name: configurations
+          configMap:
+            name: vault

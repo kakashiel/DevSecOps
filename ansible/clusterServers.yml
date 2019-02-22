@@ -5,6 +5,7 @@
     ansible_ssh_pass: vagrant
     ansible_connection: ssh
   tasks:
-  - include: "/{{SRC}}/common/tasks/common_tools.yml"
-  - include: "/{{SRC}}/common/tasks/zsh.yml"
-  - include: "/{{SRC}}/common/tasks/k8s.yml"
+  - include: "/{{SRC}}/common/tasks/install_common_tools.yml"
+  - include: "/{{SRC}}/common/tasks/install_zsh.yml"
+#  - include: "/{{SRC}}/common/tasks/install_microk8s.yml"
+  - include: "/{{SRC}}/common/tasks/install_minikube.yml"
