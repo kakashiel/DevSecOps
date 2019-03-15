@@ -7,5 +7,5 @@
   tasks:
   - include: "/{{SRC}}/common/tasks/install_common_tools.yml"
   - include: "/{{SRC}}/common/tasks/install_zsh.yml"
-#  - include: "/{{SRC}}/common/tasks/install_microk8s.yml"
-  - include: "/{{SRC}}/common/tasks/install_minikube.yml"
+  - include: "/{{SRC}}/common/tasks/install_microk8s.yml"
+#  - include: "/{{SRC}}/common/tasks/install_minikube.yml"

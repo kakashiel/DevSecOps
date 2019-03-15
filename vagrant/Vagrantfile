@@ -6,51 +6,33 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/ubuntu1810"
-  #config.ssh.username = 'root'
-  #config.ssh.password = 'vagrant'
-  #config.ssh.insert_key = 'true'
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  # config.vm.box_check_update = true
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  #config.vm.network "forwarded_port", guest: 80, host: 8080
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine and only allow access
-  # via 127.0.0.1 to disable public access
-  #config.vm.network "forwarded_port", guest: 2375, host: 2375, host_ip: "127.0.0.1"
-  #config.vm.network "forwarded_port", guest: 5005, host: 5005, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 8081, host: 8081, host_ip: "127.0.0.1"
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  # config.vm.network "forwarded_port", guest: 8081, host: 8081, host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.10"
-
-  #Create host-only adapater for devstack
-  #config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
-
+  # config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
-  config.vm.network "public_network", bridge: [
-   "en0: Wi-Fi (AirPort)"
-  ]
+  # config.vm.network "public_network", bridge: ["en0: Wi-Fi (AirPort)"],  use_dhcp_assigned_default_route: true
 
   config.vm.provision "shell", inline: <<-SHELL
     echo "export DIR='/app'" >> /etc/profile.d/myvar.sh
@@ -75,12 +57,9 @@ Vagrant.configure("2") do |config|
 
   SHELL
   config.vm.provider "virtualbox" do |vb|
-     # Display the VirtualBox GUI when booting the machine
-     #1- vagrant ssh
-     #2- sudo apt-get install -y xfce4 virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 && sudo VBoxClient --clipboard && sudo VBoxClient --draganddrop && sudo VBoxClient --display && sudo VBoxClient --checkhostversion && sudo VBoxClient --seamless &&
-     #3 vb.gui = true
      vb.gui = false
-     #4 v ssh -> startxfce4&
+     # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+     # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 
      # Customize the amount of memory on the VM:
      vb.memory = "6144"

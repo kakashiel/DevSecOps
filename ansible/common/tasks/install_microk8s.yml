@@ -11,8 +11,8 @@
   command: snap install microk8s --classic
   register: installation
 
-- name: Enables microk8s dns dashboard ingress
-  shell: source ~/.zshrc && microk8s.enable dns dashboard ingress
+- name: Enables microk8s dns dashboard
+  shell: source ~/.zshrc && microk8s.enable dns dashboard
   args:
     executable: /bin/zsh
   when: installation is success

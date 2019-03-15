@@ -9,3 +9,4 @@ ansible_connection=ssh
 ansible_user=vagrant
 ansible_password=vagrant
 ansible_python_interpreter=/usr/bin/python3
+ansible_network_os=ios

@@ -13,3 +13,16 @@
     packages:
       - nmon #Usefule tool to monitor network/proc/memory/filesytem
       - wget
+      - libnm-glib-dev
+- name: test
+  nmcli:
+    ctype: ethernet
+    name: my-eth1
+    ifname: '*'
+    state: present
+
+- name: configure name servers
+  net_system:
+    name_servers:
+      - 8.8.8.8
+      - 8.8.4.4
